@@ -1,0 +1,8 @@
+repo="repo"
+distdir="dist"
+tmpdir="build"
+prefix="/tmp/rootfs"
+nprocs=$(nproc)
+
+CC=clang
+CXX=clang++

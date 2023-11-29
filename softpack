@@ -1,0 +1,47 @@
+#!/bin/zsh
+
+set -eu
+
+source "src/args.sh"
+parse_args $@ || exit 1
+
+source "src/config.sh"
+load_config "config"
+
+mkdir -p "$distdir"
+
+source "$repo/$pkg/$pkg-$ver.sh"
+source "src/build-script.sh"
+
+builddir=$tmpdir/$pkg-$ver
+mkdir -p $builddir
+cd $builddir
+for src in $src; do
+    parse_src $src
+
+    # fetch
+    if [[ ! -e $distdir/$save ]]; then
+        download_src $url $save
+    fi
+
+    # unpack
+    if [[ $do_unpack == 1 ]]; then
+        unpack_src_to_cwd $save
+    fi
+done
+
+# build
+export CC
+export CXX
+export PKG_CONFIG_PATH=$prefix/lib/pkgconfig
+
+cd $project_root
+if [[ $do_configure == 1 ]]; then
+    configure
+fi
+if [[ $do_build == 1 ]]; then
+    build
+fi
+if [[ $do_install == 1 ]]; then
+   install 
+fi
