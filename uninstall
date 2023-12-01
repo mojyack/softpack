@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+set -eu
+
+source "src/config.sh"
+load_config "config"
+
+pkg=$1
+ver=$2
+
+rec=$recorddir/$pkg-$ver
+
+if [[ ! -e $rec ]]; then
+    echo "record file $rec was not found"
+    exit 1
+fi
+
+tac $rec  | while read line; do
+    file=$prefix/$line
+    if [[ -d $file ]]; then
+        rmdir $file
+    else
+        rm $file
+    fi
+done
+
+rm $rec
+echo "done"
