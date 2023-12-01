@@ -4,4 +4,16 @@ src=(
 
 project_root=$pkg-$ver
 
-source "$repo/_common/regular-tar-make.sh"
+source "$repo/_common/regular-make.sh"
+
+configure() {
+    regular_configure
+}
+
+build() {
+    regular_make_all
+}
+
+install() {
+    regular_make_install
+}

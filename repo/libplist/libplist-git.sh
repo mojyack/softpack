@@ -4,15 +4,17 @@ src=(
 
 project_root=$pkg.git
 
+source "$repo/_common/regular-make.sh"
+
 configure() {
     NOCONFIGURE=1 ./autogen.sh
-    ./configure --prefix=$prefix
+    regular_configure
 }
 
 build() {
-    make -j$nprocs
+    regular_make_all
 }
 
 install() {
-    make install
+    regular_make_install
 }

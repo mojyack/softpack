@@ -2,17 +2,19 @@ src=(
     "https://github.com/libimobiledevice/$pkg.git"
 )
 
-project_root=$pkg-$ver
+project_root=$pkg.git
+
+source "$repo/_common/regular-make.sh"
 
 configure() {
     NOCONFIGURE=1 ./autogen.sh
-    ./configure --prefix=$prefix --without-cython
+    regular_configure --without-cython
 }
 
 build() {
-    make -j$nprocs
+    regular_make_all
 }
 
 install() {
-    make install
+    regular_make_install
 }
