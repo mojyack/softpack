@@ -1,6 +1,7 @@
 repo="repo"
 distdir="dist"
 tmpdir="build"
+recorddir="db"
 prefix="/tmp/rootfs"
 nprocs=$(nproc)
 

@@ -3,5 +3,6 @@ load_config() {
     repo=${repo:a}
     distdir=${distdir:a}
     tmpdir=${tmpdir:a}
+    recorddir=${recorddir:a}
     prefix=${prefix:a}
 }
