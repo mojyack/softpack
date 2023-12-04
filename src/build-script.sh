@@ -30,8 +30,9 @@ unpack_src_to_cwd() {
     if [[ ${save:e} == "bz2" ||
           ${save:e} == "gz" ]]; then
         tar -xf $distdir/$save
-    fi
-    if [[ ${save:e} == "git" ]]; then
+    elif [[ ${save:e} == "zip" ]]; then
+        unzip $distdir/$save
+    elif [[ ${save:e} == "git" ]]; then
         cp -r $distdir/$save .
     fi
 }
