@@ -5,11 +5,10 @@ src=(
 project_root=$pkg-$ver
 
 source "$repo/_common/regular-make.sh"
+source "$repo/_common/cmake.sh"
 
 configure() {
-    mkdir build
-    cd build
-    cmake -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_INSTALL_PREFIX=$prefix ..
+    cmake_configure build
 }
 
 build() {
