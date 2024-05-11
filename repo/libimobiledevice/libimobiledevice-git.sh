@@ -8,7 +8,7 @@ source "$repo/_common/regular-make.sh"
 
 configure() {
     NOCONFIGURE=1 ./autogen.sh
-    regular_configure --without-cython
+    CFLAGS=-D_GNU_SOURCE regular_configure --without-cython
 }
 
 build() {
