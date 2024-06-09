@@ -5,4 +5,5 @@
 ./softpack usbmuxd git
 ./softpack libirecovery git
 ./softpack libzip 1.10.1
+./softpack libtatsu git
 ./softpack idevicerestore git
